@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//I referenced the following code from this youtube video https://www.youtube.com/watch?v=K1xZ-rycYY8&t=93s
 public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;

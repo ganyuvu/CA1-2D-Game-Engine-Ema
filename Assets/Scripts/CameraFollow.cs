@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//I referenced the following code from a youtube video https://www.youtube.com/watch?v=ZBj3LBA2vUY
+
 public class CameraFollow : MonoBehaviour
 {
     //Defines the camera offset to the player
@@ -21,6 +23,7 @@ public class CameraFollow : MonoBehaviour
     {
         //Adds the offset to the position of the target 
         Vector3 targetPosition = target.position + offset;
+        //Gradually changes the vector to another location
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
     }
 }
