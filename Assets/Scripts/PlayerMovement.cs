@@ -2,44 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//I referenced the following code from this youtube video https://www.youtube.com/watch?v=K1xZ-rycYY8&t=93s
-public class PlayerMovement : MonoBehaviour
+public class playerMovement : MonoBehaviour
 {
-    private float horizontal;
-
-    private float speed = 8f;
-    
+    public float moveSpeed = 5f;
+    public Rigidbody2D rb;
+    Vector2 movement; //stores all the movement from the vertical and horizontal movement
     private bool isFacingRight = true;
-
-    //Refers to unity 
-    [SerializeField] private Rigidbody2D rb;
+    public Animator anim;
 
     // Update is called once per frame
     void Update()
     {
-        //returns the value of -1, or 1, which determines the direction the player moves
-        horizontal = Input.GetAxisRaw("Horizontal");
-
+        movement.x = Input.GetAxisRaw("Horizontal"); // gives value between 1 and -1 to move left or right on the horizontal axis
+        movement.y = Input.GetAxisRaw("Vertical");
+        anim.SetFloat("Speed", movement.sqrMagnitude);
         Flip();
     }
-
-    //the fixed update is called a fixed amount of times per second unlike the normal update that calls once per 
-    private void FixedUpdate()
+    
+    void FixedUpdate()
     {
-        //Gets the rigid bodies velocity 
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        rb.MovePosition(rb.position + movement * moveSpeed  * Time.fixedDeltaTime); // moves the rigidbody to a new position and makes sure player collides with anything in the way
     }
-    //Method to flip player which depends on the value of the horizontal axis
+
+    //flips the player by getting its position on horizontal axis 
     private void Flip()
     {
-        //if the player faces right or left it will flip them
-        if(isFacingRight && horizontal <0f || !isFacingRight && horizontal > 0f)
+        if(isFacingRight && movement.x < 0f || !isFacingRight && movement.x > 0f)
         {
-            //this will flip the player by changing the x scale to -1
             isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
         }
     }
+
 }
