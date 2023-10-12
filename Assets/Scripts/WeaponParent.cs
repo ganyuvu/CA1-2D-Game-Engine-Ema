@@ -2,13 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponParent : MonoBehaviour
+public class Shooting : MonoBehaviour
 {
-    public Vector2 pointerPosition { get; set; } // creating a getter and a setter so we can use the weapon on another script
+    [SerializeField] private GameObject gun;
+    private Camera mainCam;
+    private Vector3 mousePosition;
 
-    private void Update()
+    // Start is called before the first frame update
+    void Start()
     {
-         transform.right = (pointerPosition - (Vector2)transform.position).normalized; // this ensures that the red axis is always used as the pointer
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        mousePosition = mainCam.ScreenToWorldPoint(Input.mousePosition); //sets vector to mouse postion
+
+        Vector3 rotation = mousePosition - transform.position; //rotates the gun
+
+        float rotateZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg; //Atan2 gives us an angle in radians and Rad2Deg changes radians to degrees, this creates the guns rotation
+
+        transform.rotation = Quaternion.Euler(0, 0, rotateZ);
 
     }
 }
