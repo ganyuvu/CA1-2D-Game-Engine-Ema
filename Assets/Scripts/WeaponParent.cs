@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
-    [SerializeField] private GameObject gun;
     private Camera mainCam;
     private Vector3 mousePosition;
 
