@@ -2,10 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//I used a video linked (https://www.youtube.com/watch?v=-bkmPm_Besk&t=188s) to code this section
 public class Shooting : MonoBehaviour
 {
     private Camera mainCam;
     private Vector3 mousePosition;
+    public GameObject bullet;
+    public Transform bulletTransform;
+    public bool canFire;
+    private float timer; //adds a cooldown to gunshots
+    public float timeBetweenFiring; //Can change in the inspector
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,5 +31,23 @@ public class Shooting : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0, 0, rotateZ);
 
+        if(!canFire) //if canFire is = to false
+        {
+            timer += Time.deltaTime; // timer will go up with the time of the game
+            if(timer > timeBetweenFiring) //  if the timer exceeds timeBetweenFiring it will allow player to fire again      
+            {
+                canFire = true;
+                timer = 0; // resets the timer
+            }
+        }
+
+        if(Input.GetMouseButton(0) && canFire) // if left mouse is clicked, gun will shoot, however it will only fire if there is no cooldown
+        {
+            canFire = false;
+            Instantiate(bullet, bulletTransform.position, Quaternion.identity); //Instantiates bullet prefab, the bullets position and gives it its own rotation
+        }
+
     }
+
+   
 }

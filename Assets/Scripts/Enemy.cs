@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player"); // finds the object with the tag "Player"
+        SetEnemyValues();
     }
 
     // Update is called once per frame
@@ -21,10 +22,30 @@ public class Enemy : MonoBehaviour
         Swarm();
     }
 
+    private void SetEnemyValues()
+    {
+        GetComponent<Health>().SetHealth(data.hp, data.hp);
+        damage = data.damage;
+        speed = data.speed;
+
+    }
+
     //function to follow the player
     private void Swarm()
     {
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if(collider.CompareTag("Player"))
+        {
+            if(collider.GetComponent<Health>() != null)
+            {
+                collider.GetComponent<Health>().Damage(damage);
+                
+            }
+        }
     }
 
 }
