@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+public float moveSpeed = 5f;
     public Rigidbody2D rb;
     Vector2 movement; //stores all the movement from the vertical and horizontal movement
     private bool isFacingRight = true;
@@ -16,24 +16,28 @@ public class playerMovement : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal"); // gives value between 1 and -1 to move left or right on the horizontal axis
         movement.y = Input.GetAxisRaw("Vertical");
         anim.SetFloat("Speed", movement.sqrMagnitude);
-        Flip();
+
+        if(movement.x <0 && isFacingRight)
+        {
+            Flip();
+        }
+        else if(movement.x > 0 && !isFacingRight)
+        {
+            Flip();
+        }
     }
-    
+
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * moveSpeed  * Time.fixedDeltaTime); // moves the rigidbody to a new position and makes sure player collides with anything in the way
     }
 
     //flips the player by getting its position on horizontal axis 
-    private void Flip()
+    void Flip()
     {
-        if(isFacingRight && movement.x < 0f || !isFacingRight && movement.x > 0f)
-        {
-            isFacingRight = !isFacingRight;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
-        }
+
+        isFacingRight = !isFacingRight;
+        transform.Rotate(0f,180f,0f);
     }
 
 }

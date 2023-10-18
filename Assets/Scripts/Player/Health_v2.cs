@@ -1,17 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
     [SerializeField] private int health = 30;
     private int MAX_HEALTH = 30;
+    public Image HealthBar;
     AudioManager AudioManager;
 
     // Update is called once per frame
     private void Awake()
     {
         AudioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
+    void update()
+    {
+        HealthBar.fillAmount = Mathf.Clamp(health/ MAX_HEALTH, 0, 1);
     }
 
     public void SetHealth(int maxHealth, int health )
