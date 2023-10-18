@@ -4,29 +4,21 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private int damage = 1;
-    [SerializeField] private float speed = 2;
-    [SerializeField] private EnemyData data;
     private GameObject player;
+    public PlayerHealth pHealth;
+    public float enemyDamage = 10f;
+    public float speed = 2f;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player"); // finds the object with the tag "Player"
-        SetEnemyValues();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Swarm();
-    }
-
-    private void SetEnemyValues()
-    {
-        GetComponent<Health>().SetHealth(data.hp, data.hp);
-        damage = data.damage;
-        speed = data.speed;
+        Swarm(); // calls function
     }
 
     //function to follow the player
@@ -35,14 +27,12 @@ public class Enemy : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collider.CompareTag("Player"))
+        if(collision.gameObject.CompareTag("Player"))
         {
-            if(collider.GetComponent<Health>() != null)
-            {
-                collider.GetComponent<Health>().Damage(damage);               
-            }
+            collision.gameObject.GetComponent<PlayerHealth>().health -= enemyDamage;
+            
         }
     }
 

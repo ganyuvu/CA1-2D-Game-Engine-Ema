@@ -18,24 +18,9 @@ public class PlayerHealth : MonoBehaviour
         maxHealth = health; // whataver we set our health to, max health is automatically set to health
     }
 
-   void Update()
+    void Update()
     {
         healthBar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
-    }
-    public void SetHealth(int maxHealth, int health )
-    {
-        this.maxHealth = maxHealth;
-        this.health = health;
-    }
-
-    public void Damage(int amount)
-    {
-        if(amount < 0)
-        {
-            throw new System.ArgumentOutOfRangeException("Cannot have negative Damage");
-        }
-
-        this.health -= amount; //takes away hp from player
 
         if(health <= 0 && !isDead) //if the health goes down to 0 and the player isnt dead
         {
@@ -45,5 +30,7 @@ public class PlayerHealth : MonoBehaviour
             gameManager.gameOver(); // calls the game manager
             Debug.Log("Dead");
         }
+        
     }
+
 }
