@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//got parts of this code from (https://www.youtube.com/watch?v=Lvk6HKmWVwE&t=153s)
 public class PlayerMovement : MonoBehaviour
 {
 public float moveSpeed = 5f;

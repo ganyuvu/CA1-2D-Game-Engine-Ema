@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
+//Video used to help code this (https://www.youtube.com/watch?v=6hp9-mslbzI&ab_channel=Nade)
 public class Weapon : MonoBehaviour
 {
     public GameObject Player;
@@ -11,10 +13,9 @@ public class Weapon : MonoBehaviour
     private float timer; //adds a cooldown to gunshots
     public float timeBetweenFiring; //Can change in the inspector
 
-    void update()
-    {
-       
-    }
+    private GameObject bulletInst;
+
+    [SerializeField] private Transform bulletSpawnPoint;
 
     private void FixedUpdate()
     {
@@ -51,7 +52,15 @@ public class Weapon : MonoBehaviour
         if(Input.GetMouseButton(0) && canFire) // if left mouse is clicked, gun will shoot, however it will only fire if there is no cooldown
         {
             canFire = false;
-            Instantiate(bullet, bulletTransform.position, Quaternion.identity); //Instantiates bullet prefab, the bullets position and gives it its own rotation
-        }
+            Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity); //Instantiates bullet prefab, the bullets position and gives it its own rotation
+        }  
     }
+    
+//     private void HandleGunShooting()
+//     {
+//         if(Mouse.current.leftButton.wasPressedThisFrame)
+//         {
+//             bulletInst = Instantiate(bullet, bulletSpawnPoint.position, bullet.transform.rotation);
+//         }
+//     }
 }
