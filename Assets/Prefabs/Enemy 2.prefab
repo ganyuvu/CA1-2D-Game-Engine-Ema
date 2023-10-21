@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -4692422260802887444}
   m_Layer: 6
   m_Name: Enemy 2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,6 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8449293ea8803e24e8946387d240d96c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 10
+  currentHealth: 10
   pHealth: {fileID: 0}
   enemyDamage: 2
   speed: 2

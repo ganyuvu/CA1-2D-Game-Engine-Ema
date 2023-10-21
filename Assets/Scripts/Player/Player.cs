@@ -5,7 +5,7 @@ using UnityEngine;
 //got parts of this code from (https://www.youtube.com/watch?v=Lvk6HKmWVwE&t=153s)
 public class PlayerMovement : MonoBehaviour
 {
-public float moveSpeed = 5f;
+    public float moveSpeed = 5f;
     public Rigidbody2D rb;
     Vector2 movement; //stores all the movement from the vertical and horizontal movement
     private bool isFacingRight = true;
