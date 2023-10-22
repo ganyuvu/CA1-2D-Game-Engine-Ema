@@ -7,15 +7,27 @@ using UnityEngine.InputSystem;
 public class Weapon : MonoBehaviour
 {
     public GameObject Player;
+
     public GameObject bullet;
+
     public Transform bulletTransform;
+
     public bool canFire;
+
     private float timer; //adds a cooldown to gunshots
+
     public float timeBetweenFiring; //Can change in the inspector
+
+    AudioManager AudioManager;
 
     private GameObject bulletInst;
 
     [SerializeField] private Transform bulletSpawnPoint; //adds a spawnpoint for the bullets so they dont spawn inside the player
+
+     private void Awake()
+    {
+        AudioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     private void FixedUpdate()
     {
@@ -53,6 +65,7 @@ public class Weapon : MonoBehaviour
         {
             canFire = false;
             Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity); //Instantiates bullet prefab, the bullets position and gives it its own rotation
+            AudioManager.PlaySFX(AudioManager.Shoot);
         }  
     }
     

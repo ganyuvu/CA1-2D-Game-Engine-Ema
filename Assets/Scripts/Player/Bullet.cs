@@ -14,11 +14,11 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>(); //we need this to find the mouse position
 
         rb = GetComponent<Rigidbody2D>();
 
-        mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+        mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition); // getting mouse position 
 
         Vector3 direction = mousePos - transform.position; //giving the bullet a direction to go in
 

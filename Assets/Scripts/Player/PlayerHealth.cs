@@ -12,8 +12,12 @@ public class PlayerHealth : MonoBehaviour
     public GameManager gameManager;
     private bool isDead;
 
-    //AudioManager AudioManager;
+    AudioManager AudioManager;
 
+    private void Awake()
+    {
+        AudioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
 
         if(health <= 0 && !isDead) //if the health goes down to 0 and the player isnt dead
         {
-            //AudioManager.PlaySFX(AudioManager.Death); // goes into audio manager script and plays sound effect
+            AudioManager.PlaySFX(AudioManager.Death); // goes into audio manager script and plays sound effect
             isDead = true; //this lets the gameOver function only be called once, since we declared that the player is dead
             gameManager.gameOver(); // calls the game manager
             Time.timeScale = 0; 

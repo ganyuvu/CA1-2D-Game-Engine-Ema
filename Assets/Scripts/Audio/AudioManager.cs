@@ -9,7 +9,12 @@ public class AudioManager : MonoBehaviour
 
    [Header("-----------Audio Clip----------")]
     public AudioClip Background;
+
     public AudioClip Death;
+
+    public AudioClip Shoot;
+
+    public AudioClip PowerUp;
 
     private void Start()
     {
