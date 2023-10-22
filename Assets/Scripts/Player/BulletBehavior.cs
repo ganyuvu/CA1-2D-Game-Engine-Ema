@@ -7,7 +7,7 @@ using UnityEngine;
 public class BulletBehavior : MonoBehaviour
 {
     [SerializeField] private float destroyTime = 3f;
-    [SerializeField] private LayerMask whatDestroysBullet; 
+    [SerializeField] private LayerMask whatDestroysBullet; //LayerMask to store all layers that can be hit by bullet
     public float gunDamage = 2f;
     private Rigidbody2D rb;
     private float damage;
@@ -16,7 +16,7 @@ public class BulletBehavior : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        SetDestroyTime();
+        SetDestroyTime(); //calls the function
     }
 
     //function to destroy bullet if it hits a certain oject or walls // to damage enemies
@@ -34,7 +34,7 @@ public class BulletBehavior : MonoBehaviour
         }
     }
 
-    //fuction to destroy bullet after a certain amount of time
+    //fuction to destroy bullet after a certain amount of time if it hasnt collided with anything
     private void SetDestroyTime()
     {
         Destroy(gameObject, destroyTime);

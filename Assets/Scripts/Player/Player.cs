@@ -16,9 +16,9 @@ public class PlayerMovement : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal"); // gives value between 1 and -1 to move left or right on the horizontal axis
         movement.y = Input.GetAxisRaw("Vertical");
-        anim.SetFloat("Speed", movement.sqrMagnitude);
+        anim.SetFloat("Speed", movement.sqrMagnitude); // player animation
 
-        if(movement.x <0 && isFacingRight)
+        if(movement.x <0 && isFacingRight) //flipping player
         {
             Flip();
         }
@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         rb.MovePosition(rb.position + movement * moveSpeed  * Time.fixedDeltaTime); // moves the rigidbody to a new position and makes sure player collides with anything in the way
     }
 
-    //flips the player by getting its position on horizontal axis 
+    //flip function 
     void Flip()
     {
 

@@ -15,7 +15,7 @@ public class Weapon : MonoBehaviour
 
     private GameObject bulletInst;
 
-    [SerializeField] private Transform bulletSpawnPoint;
+    [SerializeField] private Transform bulletSpawnPoint; //adds a spawnpoint for the bullets so they dont spawn inside the player
 
     private void FixedUpdate()
     {
@@ -56,11 +56,4 @@ public class Weapon : MonoBehaviour
         }  
     }
     
-//     private void HandleGunShooting()
-//     {
-//         if(Mouse.current.leftButton.wasPressedThisFrame)
-//         {
-//             bulletInst = Instantiate(bullet, bulletSpawnPoint.position, bullet.transform.rotation);
-//         }
-//     }
 }
