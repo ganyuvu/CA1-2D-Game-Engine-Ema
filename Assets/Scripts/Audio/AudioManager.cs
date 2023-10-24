@@ -16,6 +16,8 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip PowerUp;
 
+    public AudioClip Button;
+
     private void Start()
     {
         musicSource.clip = Background; // once game starts, background music will play

@@ -20,8 +20,8 @@ public class PowerUp : MonoBehaviour
         {
             AudioManager.PlaySFX(AudioManager.PowerUp);
 
-             Destroy(gameObject); //destroys the object as soon as we collide with it
-             powerupEffect.Apply(collision.gameObject); //appling powerup effect
+            Destroy(gameObject); //destroys the object as soon as we collide with it
+            powerupEffect.Apply(collision.gameObject); //applying powerup effect
         }
         
     }

@@ -8,20 +8,30 @@ public class GameManager : MonoBehaviour
 {
     public GameObject gameOverUI;
 
+    AudioManager AudioManager;
+
+    private void Awake()
+    {
+        AudioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     public void gameOver()
     {
         gameOverUI.SetActive(true);
+         Time.timeScale = 0;
     }
 
     public void restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        AudioManager.PlaySFX(AudioManager.Button);
+        Time.timeScale = 1;
 
     }
 
     public void quit()
     {
         Application.Quit();
+        AudioManager.PlaySFX(AudioManager.Button);
     }
 }
