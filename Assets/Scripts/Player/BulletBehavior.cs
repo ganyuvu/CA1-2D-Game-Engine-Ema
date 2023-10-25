@@ -11,6 +11,7 @@ public class BulletBehavior : MonoBehaviour
     public float gunDamage = 2f;
     private Rigidbody2D rb;
     private float damage;
+    public float amount;
 
     // Start is called before the first frame update
     void Start()

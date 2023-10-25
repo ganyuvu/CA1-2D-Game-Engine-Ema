@@ -7,6 +7,7 @@ using UnityEngine;
 public class HealthBuff : PowerUpEffect
 {
     public float amount;
+
     public override void Apply(GameObject target) //overrides the function in PowerUpEffect
     {
         target.GetComponent<PlayerHealth>().health += amount; //we get the health component from PlayerHealth so we can add our buff amount to it

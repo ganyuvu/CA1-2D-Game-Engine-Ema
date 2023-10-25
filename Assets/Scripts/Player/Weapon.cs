@@ -39,6 +39,8 @@ public class Weapon : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
 
+        //flipping the gun
+
         if(rotationZ < -90 || rotationZ > 90)
         {
             if(Player.transform.eulerAngles.y == 0)

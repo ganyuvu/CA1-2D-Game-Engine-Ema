@@ -21,6 +21,13 @@ public class GameManager : MonoBehaviour
          Time.timeScale = 0;
     }
 
+    public void Home()
+    {
+        SceneManager.LoadScene("MainMenu"); //will load the scene called MainMenu on click
+        AudioManager.PlaySFX(AudioManager.Button);
+        Time.timeScale = 1; //resumes the game
+    }
+
     public void restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

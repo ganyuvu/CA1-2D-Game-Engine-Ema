@@ -8,8 +8,8 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] float remainingTime;
+    public GameObject WinScreenUI;
 
-    //float elapsedTime;
 
     // Update is called once per frame
     void Update()
@@ -22,7 +22,8 @@ public class Timer : MonoBehaviour
         {
             remainingTime = 0;
             Time.timeScale = 0;
-            //game over screen active here
+            //game over win screen active here
+            WinScreenUI.SetActive(true);
         }
         int minutes = Mathf.FloorToInt(remainingTime / 60); //splitting the time into mins and secs
         int seconds = Mathf.FloorToInt(remainingTime % 60);
